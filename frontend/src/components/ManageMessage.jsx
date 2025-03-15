@@ -21,11 +21,6 @@ export default function ManageMessage({
                     style={{ width: "100%", minHeight: "30px" }}
                 />
 
-                <button
-                    onClick={() => handleGetMessage()}
-                >
-                    Get the personalized email
-                </button>
             </div>
 
 

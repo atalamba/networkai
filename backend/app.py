@@ -43,10 +43,9 @@ def search_by_company():
 
     search_results = api.search_people(
         keyword_company = company_id,
-        keyword_school = 'middlebury-college'
     )
 
-
+    pprint(search_results)
     return {'search_results': search_results}
     
         
@@ -58,39 +57,17 @@ def search_profile():
     data = request.get_json()
 
 
-    profile_list = data.get('profileList')
+    profile_list = data.get('idList')
 
     linkedin_profiles = []
 
     api = Linkedin('atalamba@middlebury.edu', 'YnsasB?8')
 
-    for person in profile_list:
-                    
-        name = person.get('name')
-        print(name)
-        company = person.get('company')
+    for person in profile_list: 
+        profile = api.get_profile(public_id=person)
+        linkedin_profiles.append(profile)
+        pprint(profile)
 
-        search_results = []
-        
-      
-        search_results = api.search_people(
-            keywords = name
-        )
-
-        print("search_results" ,search_results)
-
-        
-        for result in search_results:
-            pprint(result)
-            if result.get('name') == name:
-                print('HAS NAME')
-                if result.get('urn_id'):
-                    profile = api.get_profile(public_id=result['urn_id'])
-                    pprint(profile)
-                    linkedin_profiles.append(profile)
-
-
-            
     return {"profileList": linkedin_profiles}
     
     

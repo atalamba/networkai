@@ -44,10 +44,12 @@ function mapProfilesToObject(rawProfiles) {
     }, {});
 }
 
-function complete(profileList, setLinkedinProfiles, rawProfiles, setRawProfiles) {
+function complete(profileList, setLinkedinProfiles) {
 
     const Endpoint = "http://127.0.0.1:5000"
     const profileEndpoint = `${Endpoint}/search-profile?`;
+
+    const idList = profileList.map(profile => profile.split("/").at(-2))
 
     setLinkedinProfiles({})
 
@@ -57,7 +59,7 @@ function complete(profileList, setLinkedinProfiles, rawProfiles, setRawProfiles)
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            profileList,
+            idList,
         })
     }).then(response => {
         if (!response.ok) {

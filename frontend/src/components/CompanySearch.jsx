@@ -43,7 +43,7 @@ export default function CompanySearch() {
             </div>
             
             {searchResults.map((person) => (
-                <div key={person?.name}>JSON.stringify(person) </div>
+                <div key={person?.name}>{JSON.stringify(person)} </div>
             ))}
 
         </>

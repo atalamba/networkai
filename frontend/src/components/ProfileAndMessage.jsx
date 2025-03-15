@@ -59,7 +59,7 @@ export default function ProfileAndMessage({
 
     return (
         <>
-
+            <ModifyTemplate template={template} setTemplate={setTemplate} />
             {Object.keys(LinkedinProfiles)?.length > 0 && (
                 <div>
                     <ProfileToggle LinkedinProfiles={LinkedinProfiles}
@@ -67,36 +67,35 @@ export default function ProfileAndMessage({
                         setCurrentProfile={setCurrentProfile} />
 
                     {currentProfile.length > 0 && (
-                         <ManageMessage LinkedinProfiles={LinkedinProfiles}
-                         currentProfile={currentProfile}
-                         handleGetMessage={handleGetMessage}
-                         setOneProfile={setOneProfile} />
+                        <ManageMessage LinkedinProfiles={LinkedinProfiles}
+                            currentProfile={currentProfile}
+                            handleGetMessage={handleGetMessage}
+                            setOneProfile={setOneProfile} />
                     )}
+
+                    <button
+                        onClick={() => handleGetMessage()}
+                    >
+                        Get the personalized email
+                    </button>
 
                     <button
                         onClick={() => writeAll(LinkedinProfiles, template, hookSetmessage)}
                     >
                         Write all
                     </button>
-                   
+
 
                 </div>
 
 
             )}
 
-            <ModifyTemplate template={template} setTemplate={setTemplate} />
+
 
         </>
     )
 }
 
-/**
- * 
- * // ONLY DO THIS IF YOU SELECTED A PROFILE WITH THE BUTTON, because you will access properties
- * 
- />
- * 
- */
 
 

@@ -15,9 +15,6 @@ import CompanySearch from './components/CompanySearch'
 function App() {
 
   // the data that comes from linkedin
-
-  
-
   const [profileList, setProfileList] = useState([]) // for the people as input, INPUT
 
   const [LinkedinProfiles, setLinkedinProfiles] = useState({}) // WHOLE PROFILES
@@ -32,17 +29,12 @@ function App() {
 
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem", width:"100%" }}>
 
-{/**
- * 
- * 
- */}
       
 
-
-
-      <InputProfile profileList={profileList} setProfileList={setProfileList}/> 
-      <SeeProfiles profileList = {profileList} setLinkedinProfiles={setLinkedinProfiles} /> 
-
+      <InputProfile profileList={profileList} 
+      setProfileList={setProfileList}
+      setLinkedinProfiles={setLinkedinProfiles}
+      /> 
 
       <ProfileAndMessage LinkedinProfiles={LinkedinProfiles} 
       setLinkedinProfiles = {setLinkedinProfiles}

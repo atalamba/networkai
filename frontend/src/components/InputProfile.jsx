@@ -1,41 +1,26 @@
 import { useEffect, useState } from 'react'
+import complete from "../api/search-profiles";
 
-export default function InputProfile({ profileList, setProfileList }) {
+
+export default function InputProfile({ profileList, setProfileList, setLinkedinProfiles }) {
 
     // profile link goes here
-
-    const [currentPerson, setCurrentPerson] = useState({
-        name: "",
-        email: "",
-        company: ""
-    })
+    const [currentPerson, setCurrentPerson] = useState("")
 
     const addProfile = () => {
-        const person = {
-            name: currentPerson.name,
-            email: currentPerson.email,
-            company: currentPerson.company
-        }
-
-        const newProfileList = [...profileList, person]
+        const newProfileList = [...profileList, currentPerson]
 
         setProfileList(newProfileList)
 
-        setCurrentPerson(
-            {
-                name: "",
-                email: "",
-                company: person.company
-            }
-        )
+        setCurrentPerson("")
     }
 
     return (
-        <div style={{display:"flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%" }}>
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "start", width: "100%" }}>
-                    <h2>Name</h2>
+                    <h2>Profile Link</h2>
 
 
                     <input
@@ -43,65 +28,47 @@ export default function InputProfile({ profileList, setProfileList }) {
                             fontSize: "1.2rem", padding: "12px", marginBottom: "10px", marginRight: "10px", width: "30%",
                             minWidth: "250px"
                         }}
-                        placeholder="Name"
-                        value={currentPerson.name}
-                        onChange={(e) => setCurrentPerson(prevState => ({ ...prevState, name: e.target.value }))}
+                        placeholder="Profile Link"
+                        value={currentPerson}
+                        onChange={(e) => setCurrentPerson(e.target.value)}
                     />
 
 
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "start", width: "100%" }}>
-                    <h2>Company</h2>
-
-
-                    <input
-                        style={{
-                            fontSize: "1.2rem", padding: "12px", marginBottom: "10px", marginRight: "10px", width: "30%",
-                            minWidth: "250px"
-                        }}
-                        placeholder="Company"
-                        value={currentPerson.company}
-                        onChange={(e) => setCurrentPerson(prevState => ({ ...prevState, company: e.target.value }))}
-                    />
-
-
-                </div>
-
-                
-
-
-
-
+               
                 <button
                     onClick={() => addProfile()}
                 >Send</button>
 
                 <button
-                onClick={()=> setProfileList([])}
+                    onClick={() => setProfileList([])}
                 >
                     Clear
                 </button>
 
 
-               
+            </div>
 
+            <div>
+                {profileList.length > 0 && <strong>Current Profiles:</strong>}
+                {profileList.map((profile, index) =>
+                    <div
+                        key={index}
+                    >
+                        {profile.split('/').at(-2)}
+
+                    </div>
+                )}
 
 
             </div>
 
-            <div>
-                    {profileList.map((profile, index) =>
-                        <div
-                        key = {index}
-                        >
-                            {profile.name}
-
-                        </div>
-                    )}
-
-
-                </div>
+            <button
+                onClick={() => complete(profileList, setLinkedinProfiles)}
+            >
+                Search profiles
+            </button>
 
         </div>
 
@@ -110,27 +77,3 @@ export default function InputProfile({ profileList, setProfileList }) {
     )
 
 }
-
-
-
-/**
- * 
- * 
- * <div style={{ display: "flex", flexDirection: "column", alignItems: "start", width: "100%" }}>
-                    <h2>Email</h2>
-
-
-                    <input
-                        style={{
-                            fontSize: "1.2rem", padding: "12px", marginBottom: "10px", marginRight: "10px", width: "30%",
-                            minWidth: "250px"
-                        }}
-                        placeholder="Name"
-                        value={currentPerson.email}
-                        onChange={(e) => setCurrentPerson(prevState => ({ ...prevState, email: e.target.value }))}
-                    />
-
-
-                </div>
-
- */
