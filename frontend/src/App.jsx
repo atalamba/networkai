@@ -34,6 +34,7 @@ function App() {
       <InputProfile profileList={profileList} 
       setProfileList={setProfileList}
       setLinkedinProfiles={setLinkedinProfiles}
+      LinkedinProfiles={LinkedinProfiles}
       /> 
 
       <ProfileAndMessage LinkedinProfiles={LinkedinProfiles} 

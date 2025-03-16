@@ -65,12 +65,13 @@ def search_profile():
 
     for person in profile_list: 
         profile = api.get_profile(public_id=person)
+        profile["id"] = person
         linkedin_profiles.append(profile)
         pprint(profile)
 
     return {"profileList": linkedin_profiles}
     
-    
+
 
 
 

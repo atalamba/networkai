@@ -6,6 +6,8 @@ function extractProfileInfo(data) {
         instructions: "",
         message: "",
 
+        id: data.id,
+
         name: data.firstName + " " + data.lastName,
         firstName: data.firstName || "",
         lastName: data.lastName || "",
@@ -37,21 +39,23 @@ function extractProfileInfo(data) {
 function mapProfilesToObject(rawProfiles) {
     return rawProfiles.reduce((acc, rawProfile) => {
         const profile = extractProfileInfo(rawProfile);
-        if (profile.name) {
-            acc[profile.name] = profile;
+        if (profile.id) {
+            acc[profile.id] = profile;
         }
         return acc;
     }, {});
 }
 
-function complete(profileList, setLinkedinProfiles) {
+function complete(profileList, setLinkedinProfiles, LinkedinProfiles) {
 
     const Endpoint = "http://127.0.0.1:5000"
     const profileEndpoint = `${Endpoint}/search-profile?`;
 
     const idList = profileList.map(profile => profile.split("/").at(-2))
+    const idListQuery = idList.filter(id => !LinkedinProfiles[id])
 
-    setLinkedinProfiles({})
+    // CACHING LOGIC HERE, ONLY HAVE THE IDLIST HAVE WHAT IT NEEDS TO HAVE
+    // THEN MAKE SURE THAT THE RESULTING NEW PROFIELS ARE ADDED PROPERLY IN THE EXISTING PROFILES
 
     fetch(`${profileEndpoint}`, {
         method: "POST",
@@ -59,7 +63,7 @@ function complete(profileList, setLinkedinProfiles) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            idList,
+            idList: idListQuery
         })
     }).then(response => {
         if (!response.ok) {
@@ -74,8 +78,11 @@ function complete(profileList, setLinkedinProfiles) {
 
             const cleanedProfiles = mapProfilesToObject(rawProfiles)
 
-            setLinkedinProfiles(cleanedProfiles)
-            console.log(cleanedProfiles)
+            setLinkedinProfiles(prevProfiles => ({
+                ...prevProfiles,
+                ...cleanedProfiles
+            }))
+            console.log(LinkedinProfiles)
         }
     })
 

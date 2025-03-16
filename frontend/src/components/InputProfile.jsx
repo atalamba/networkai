@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import complete from "../api/search-profiles";
 
 
-export default function InputProfile({ profileList, setProfileList, setLinkedinProfiles }) {
+export default function InputProfile({ profileList, setProfileList, setLinkedinProfiles, LinkedinProfiles }) {
 
     // profile link goes here
     const [currentPerson, setCurrentPerson] = useState("")
@@ -65,7 +65,7 @@ export default function InputProfile({ profileList, setProfileList, setLinkedinP
             </div>
 
             <button
-                onClick={() => complete(profileList, setLinkedinProfiles)}
+                onClick={() => complete(profileList, setLinkedinProfiles, LinkedinProfiles)}
             >
                 Search profiles
             </button>
