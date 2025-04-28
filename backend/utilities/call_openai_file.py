@@ -1,5 +1,5 @@
 from openai import OpenAI
-client = OpenAI(api_key = "get out of here you won't know it")
+#client = OpenAI(api_key = "get out of here you won't know it")
 
 def call_openai(content):
 
