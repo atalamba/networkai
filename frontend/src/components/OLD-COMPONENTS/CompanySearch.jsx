@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SearchByCompany from '../api/search-by-company'
+import SearchByCompany from '../../api/OLD-ENDPOINTS/search-by-company'
 
 export default function CompanySearch() {
 

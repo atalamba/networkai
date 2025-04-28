@@ -1,16 +1,11 @@
 
 import './App.css'
 import { useEffect, useState } from 'react'
-import GetProfile from './components/GetProfile'
-import MessageInputs from './components/MessageInputs'
-import ShowMessage from './components/ShowMessage'
-import ShowProfile from './components/ShowProfile'
+
 import InputProfile from './components/InputProfile'
-import SeeProfiles from './components/SeeProfiles'
-import ProfileToggle from './components/ProfileToggle'
+
 import ProfileAndMessage from './components/ProfileAndMessage'
 
-import CompanySearch from './components/CompanySearch'
 
 function App() {
 

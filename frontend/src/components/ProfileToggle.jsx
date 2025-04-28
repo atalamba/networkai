@@ -4,6 +4,7 @@ import ShowProfile from './ShowProfile'
 export default function ProfileToggle({ LinkedinProfiles, currentProfile, setCurrentProfile }) {
     return (
         <div>
+            <h2>Profiles:</h2>
             <ul>
                 {Object.keys(LinkedinProfiles).map((profileKey) => (
                     <div key={profileKey}>

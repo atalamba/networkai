@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import complete from "../api/get-profile"
+import complete from "../../api/OLD-ENDPOINTS/get-profile"
 
 function GetProfile({ setProfile }) {
 
