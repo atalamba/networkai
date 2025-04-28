@@ -15,6 +15,9 @@ node_modules/
 # Ignore logs
 *.log
 
+backend/utilities/call_openai_file.py
+
+
 save it all/
 save it all 2/
 
