@@ -1,7 +1,7 @@
 (not perfect but it's something)
 
 Getting started:
-git clone 
+git clone https://github.com/atalamba/networkai
 
 cd frontend
 npm run dev
