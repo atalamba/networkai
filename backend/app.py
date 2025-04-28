@@ -21,7 +21,7 @@ CORS(app)  # Enable CORS for all requests
 @app.route('/get-profile', methods = ['GET'])
 def get_profile():
     profileId = request.args.get('profile')
-    api = Linkedin('atalamba@middlebury.edu', 'YnsasB?8')
+    api = Linkedin('atalamba@middlebury.edu', 'dont look here')
     profile = api.get_profile(public_id=profileId)
 
     return {'profile': profile}
@@ -39,7 +39,7 @@ def search_by_company():
     index = parts.index('company')
     company_id = parts[index + 1]
     
-    api = Linkedin('atalamba@middlebury.edu', 'YnsasB?8')
+    api = Linkedin('atalamba@middlebury.edu', 'dont look here')
 
     search_results = api.search_people(
         keyword_company = company_id,
@@ -61,7 +61,7 @@ def search_profile():
 
     linkedin_profiles = []
 
-    api = Linkedin('atalamba@middlebury.edu', 'YnsasB?8')
+    api = Linkedin('atalamba@middlebury.edu', "bro don't look here")
 
     for person in profile_list: 
         profile = api.get_profile(public_id=person)
